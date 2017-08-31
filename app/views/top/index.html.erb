@@ -1,0 +1,50 @@
+   <div class="container">
+    <header class="header clearfix">
+      <h2><a href="#">Kametweet</a></h2>
+    
+    </header>
+  
+ <!-- <div class="wrapper clearfix">で<aside class="side_menu">を囲むことで、side_menuの分、footerを下にずらします。 -->
+    <div class="wrapper clearfix">
+
+       <aside class="side_menu">
+        <div class = "parent">
+        <nav>
+         <ul>
+          <li><%=link_to "タイムライン", root_path %></li>
+          <li><%=link_to "ツイート", new_tweet_path %></li>
+          <li><%=link_to "お問い合わせ", new_contact_path %></li>
+         </ul>
+       </nav>
+      </div>
+ 
+     </aside>
+  <article class="content">
+  
+   <div class="tweet">
+    <div class="wrapper col-md-8 col-sm-10">
+  <!-- 中央寄せにするため、wrapperでブログ画面をかこむ -->
+
+    <p><%= notice %></p>
+    <h1>ツイート一覧</h1>
+      <%= link_to "ツイートする", new_tweet_path, class: 'btn btn-default' %>
+      <!-- btnはボタン-->
+      
+      <% @tweets.each do |tweet| %>
+       <div class= "row">
+        <h4><strong><%= "ID："+ tweet.name %></strong></h4>
+        <!-- strongは太字 -->
+ 
+        <p><%= tweet.content %></p>
+        <%= link_to "編集", edit_tweet_path(tweet.id), class: 'btn btn-default btn-sm btn-success' %>
+        <%= link_to "削除", tweet_path(tweet.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+
+ 
+  </article>
+ </div>
+
